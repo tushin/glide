@@ -12,7 +12,7 @@ import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 
 @SuppressWarnings("rawtypes")
-class EngineKey implements Key {
+public class EngineKey implements Key {
     private static final String EMPTY_LOG_STRING = "";
     private final String id;
     private final int width;
@@ -26,7 +26,7 @@ class EngineKey implements Key {
     private final Key signature;
     private String stringKey;
     private int hashCode;
-    private Key originalKey;
+    private OriginalKey originalKey;
 
     public EngineKey(String id, Key signature, int width, int height, ResourceDecoder cacheDecoder,
             ResourceDecoder decoder, Transformation transformation, ResourceEncoder encoder,
@@ -43,7 +43,7 @@ class EngineKey implements Key {
         this.sourceEncoder = sourceEncoder;
     }
 
-    public Key getOriginalKey() {
+    public OriginalKey getOriginalKey() {
         if (originalKey == null) {
             originalKey = new OriginalKey(id, signature);
         }
